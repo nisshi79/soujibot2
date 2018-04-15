@@ -28,7 +28,7 @@ public class Soujibot2Application {
 
 
 
-    @Scheduled(cron = "0 * * * * *", zone = "Asia/Tokyo")
+    @Scheduled(cron = "0 10 12 * * *", zone = "Asia/Tokyo")
     public void executeAlarm() {
         //プッシュする処理を呼び出す
         pushAlert();
@@ -117,7 +117,7 @@ public class Soujibot2Application {
         int doW = Calendar.getInstance().get(Calendar.DAY_OF_WEEK);
         switch (cId) {
             case 1:
-                if (doW == 1) {
+                if (doW == 6) {
                     return "教室:" + getGName(getGId(cId)) + "\r\n";
 
                 }
