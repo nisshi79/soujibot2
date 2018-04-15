@@ -24,7 +24,7 @@ public class Soujibot2Application {
         SpringApplication.run(Soujibot2Application.class, args);
     }
 
-    final static int TYOUSEI = -7;
+    final static int TYOUSEI = -1;
 
 
 
@@ -38,7 +38,7 @@ public class Soujibot2Application {
     @EventMapping
     public void pushAlert() {
         final LineMessagingClient client = LineMessagingClient
-                .builder("tkniZiAhA4I9S6jj792FaHlNFqkxlSg43w1RSPhbeGJcc5gB5J9irE0nmFMXmXDDYMZSkpqiWglXMc0ETbpYPBy5THgL/b09/pRqgn2K3nGIYv1QEOEzHjPqPJI9BDiiaQJRlYNT0sw5fo346QXblAdB04t89/1O/w1cDnyilFU="/*8CWZmG2o2Au6TOtXV5+ucn9yDb4q56IHOrzyQTwR/W+QRWL2miTXt+fRwAI7KWCshAxaoPfJ979WRTEPZQ7Xw4hcU7iT/jAessX9jpDGPcMg2OZHmzUwq2eRMnH5i+xCgMT46yqwhyBKlgQzQiBBGQdB04t89/1O/w1cDnyilFU=*/)
+                .builder("2+/yuT8ezRCZwr0JDyl3ounEW6xBb5ih1ZiTp1pg04Ey0bPqTTV3cGcnYcuWswzKYMZSkpqiWglXMc0ETbpYPBy5THgL/b09/pRqgn2K3nFLqNTiDbyoHOMNwH65yjWzwiuMWuFzpB2DH0ZuA2t/kQdB04t89/1O/w1cDnyilFU=")
                 .build();
         StringBuilder sb = new StringBuilder();
 
@@ -86,8 +86,23 @@ public class Soujibot2Application {
         return jD;
     }
 
+    private static int getMJD(){
+        int D = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);//日
+        int M = Calendar.getInstance().get(Calendar.MONTH)+1;//月
+        int Y = Calendar.getInstance().get(Calendar.YEAR);//年
+
+        if(M==1||M==2){
+            Y=Y-1;
+            M=M+12;
+        }
+        int A=(Y/100);
+        int B=2 - A + (A / 4) ;
+        double JD = (365.25*(Y + 4716)) + (30.6001*(M + 1)) + D + B - 1524.5;
+        return (int)(JD - 2400000.5);
+    }
+
     private static int getGId(int cId) {
-        int cW = ((getJD() - 2) / 7 ) % 4;
+        int cW = (((getMJD() - 4) / 7 )+TYOUSEI) % 4;
         int gId = cId - (cW * 2) % 8;
         if (gId <= 0) gId += 8;
         return gId;
