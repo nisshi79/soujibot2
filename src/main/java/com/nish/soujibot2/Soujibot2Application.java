@@ -38,7 +38,7 @@ public class Soujibot2Application {
     @EventMapping
     public void pushAlert() {
         final LineMessagingClient client = LineMessagingClient
-                .builder("8CWZmG2o2Au6TOtXV5+ucn9yDb4q56IHOrzyQTwR/W+QRWL2miTXt+fRwAI7KWCshAxaoPfJ979WRTEPZQ7Xw4hcU7iT/jAessX9jpDGPcMg2OZHmzUwq2eRMnH5i+xCgMT46yqwhyBKlgQzQiBBGQdB04t89/1O/w1cDnyilFU=")
+                .builder("tkniZiAhA4I9S6jj792FaHlNFqkxlSg43w1RSPhbeGJcc5gB5J9irE0nmFMXmXDDYMZSkpqiWglXMc0ETbpYPBy5THgL/b09/pRqgn2K3nGIYv1QEOEzHjPqPJI9BDiiaQJRlYNT0sw5fo346QXblAdB04t89/1O/w1cDnyilFU="/*8CWZmG2o2Au6TOtXV5+ucn9yDb4q56IHOrzyQTwR/W+QRWL2miTXt+fRwAI7KWCshAxaoPfJ979WRTEPZQ7Xw4hcU7iT/jAessX9jpDGPcMg2OZHmzUwq2eRMnH5i+xCgMT46yqwhyBKlgQzQiBBGQdB04t89/1O/w1cDnyilFU=*/)
                 .build();
         StringBuilder sb = new StringBuilder();
 
