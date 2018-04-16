@@ -29,7 +29,7 @@ public class Soujibot2Application {
 
 
 
-    @Scheduled(cron = "0 * * * * *", zone = "Asia/Tokyo")
+    @Scheduled(cron = "0 10 12 * * *", zone = "Asia/Tokyo")
     public void executeAlarm() {
         //プッシュする処理を呼び出す
         pushAlert();
@@ -52,10 +52,12 @@ public class Soujibot2Application {
         String aaa = "chec";
         final TextMessage textMessage = new TextMessage(str);
         final PushMessage pushMessage = new PushMessage(
-                "Ud93e55343ff0dfaa0bd51e382521e44d"/*"C6803ac7017f9c247098d440b27131a38"*/,
+                "Caaeed7cc0b737e9453fc5c3087450337"/*"C6803ac7017f9c247098d440b27131a38"*/,
                 textMessage);
 
-        //Caaeed7cc0b737e9453fc5c3087450337
+        //
+        //Ud93e55343ff0dfaa0bd51e382521e44d
+        //
 
         final BotApiResponse botApiResponse;
         try {
