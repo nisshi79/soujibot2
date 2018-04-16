@@ -24,7 +24,8 @@ public class Soujibot2Application {
         SpringApplication.run(Soujibot2Application.class, args);
     }
 
-    final static int TYOUSEI = -1;
+    final static int TYOUSEI = -2;
+
 
 
 
@@ -51,7 +52,7 @@ public class Soujibot2Application {
         String aaa = "chec";
         final TextMessage textMessage = new TextMessage(str);
         final PushMessage pushMessage = new PushMessage(
-                "Ud93e55343ff0dfaa0bd51e382521e44d"/*"C6803ac7017f9c247098d440b27131a38"*/,
+                "Caaeed7cc0b737e9453fc5c3087450337"/*"C6803ac7017f9c247098d440b27131a38"*/,
                 textMessage);
 
         final BotApiResponse botApiResponse;
@@ -67,8 +68,6 @@ public class Soujibot2Application {
     }
 
     private static int getJD() {
-
-        Calendar cal = Calendar.getInstance();
 
         //フォーマットを設定して出力
         int D = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);//日
@@ -102,7 +101,7 @@ public class Soujibot2Application {
     }
 
     private static int getGId(int cId) {
-        int cW = (((getMJD() - 4) / 7 )+TYOUSEI) % 4;
+        int cW = (((getMJD()+3) / 7 )+TYOUSEI) % 4;
         int gId = cId - (cW * 2) % 8;
         if (gId <= 0) gId += 8;
         return gId;
@@ -124,13 +123,13 @@ public class Soujibot2Application {
                 return "";
 
             case 4:
-                if (doW == 3 || doW == 6) {
+                if (doW == 2 || doW == 6) {
                     return "女子トイレ:" + getGName(getGId(cId)) + "\r\n";
                 }
                 return "";
 
             case 5:
-                if (doW == 3 || doW == 6) {
+                if (doW == 2 || doW == 6) {
                     return "渡り廊下:" + getGName(getGId(cId)) + "\r\n";
                 }
                 return "";
