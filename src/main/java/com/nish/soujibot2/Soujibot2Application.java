@@ -120,41 +120,43 @@ public class Soujibot2Application {
         int doW = Calendar.getInstance().get(Calendar.DAY_OF_WEEK);
         switch (cId) {
             case 1:
+                if (doW == 2) {
+                    return "教室:" + getGName(getGId(cId)) + "\r\n";
+                }
+                return "";
+
+            case 2:
+                if (doW == 3) {
+                    return "教室:" + getGName(getGId(cId)) + "\r\n";
+                }
+                return "";
+
+            case 5:
+                if (doW == 5) {
+                    return "教室:" + getGName(getGId(cId)) + "\r\n";
+                }
+                return "";
+
+            case 6:
                 if (doW == 6) {
                     return "教室:" + getGName(getGId(cId)) + "\r\n";
 
                 }
                 return "";
 
-            case 4:
-                if (doW == 2 || doW == 6) {
-                    return "女子トイレ:" + getGName(getGId(cId)) + "\r\n";
-                }
-                return "";
-
-            case 5:
-                if (doW == 2 || doW == 6) {
-                    return "渡り廊下:" + getGName(getGId(cId)) + "\r\n";
-                }
-                return "";
-
-            case 6:
-                if (doW == 2) {
-                    return "教室:" + getGName(getGId(cId)) + "\r\n";
-                }
-                return "";
-
             case 7:
-                if (doW == 3) {
-                    return "教室:" + getGName(getGId(cId)) + "\r\n";
+                if (doW == 2 || doW == 6) {
+                    return "男子トイレ:" + getGName(getGId(cId)) + "\r\n";
                 }
                 return "";
 
             case 8:
-                if (doW == 5) {
-                    return "教室:" + getGName(getGId(cId)) + "\r\n";
+                if (doW == 2 || doW == 6) {
+                    return "渡り廊下:" + getGName(getGId(cId)) + "\r\n";
                 }
+
                 if (doW == 4) return "今日の掃除はありません";
+
                 return "";
 
             default:
