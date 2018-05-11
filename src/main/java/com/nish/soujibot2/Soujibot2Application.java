@@ -29,7 +29,7 @@ public class Soujibot2Application {
 
 
 
-    @Scheduled(cron = "0 10 12 * * *", zone = "Asia/Tokyo")
+    @Scheduled(cron = "0 * * * * *", zone = "Asia/Tokyo")
     public void executeAlarm() {
         //プッシュする処理を呼び出す
         pushAlert();
@@ -39,7 +39,7 @@ public class Soujibot2Application {
     @EventMapping
     public void pushAlert() {
         final LineMessagingClient client = LineMessagingClient
-                .builder("2+/yuT8ezRCZwr0JDyl3ounEW6xBb5ih1ZiTp1pg04Ey0bPqTTV3cGcnYcuWswzKYMZSkpqiWglXMc0ETbpYPBy5THgL/b09/pRqgn2K3nFLqNTiDbyoHOMNwH65yjWzwiuMWuFzpB2DH0ZuA2t/kQdB04t89/1O/w1cDnyilFU=")
+                .builder(System.getenv("LINE_BOT_CHANNEL_TOKEN")/*"2+/yuT8ezRCZwr0JDyl3ounEW6xBb5ih1ZiTp1pg04Ey0bPqTTV3cGcnYcuWswzKYMZSkpqiWglXMc0ETbpYPBy5THgL/b09/pRqgn2K3nFLqNTiDbyoHOMNwH65yjWzwiuMWuFzpB2DH0ZuA2t/kQdB04t89/1O/w1cDnyilFU="*/)
                 .build();
         StringBuilder sb = new StringBuilder();
 
@@ -52,11 +52,11 @@ public class Soujibot2Application {
         String aaa = "chec";
         final TextMessage textMessage = new TextMessage(str);
         final PushMessage pushMessage = new PushMessage(
-                "Caaeed7cc0b737e9453fc5c3087450337"/*"C6803ac7017f9c247098d440b27131a38"*/,
+                "Ud93e55343ff0dfaa0bd51e382521e44d"/*Caaeed7cc0b737e9453fc5c3087450337*//*"C6803ac7017f9c247098d440b27131a38"*/,
                 textMessage);
 
         //
-        //Ud93e55343ff0dfaa0bd51e382521e44d
+        //
         //
 
         final BotApiResponse botApiResponse;
