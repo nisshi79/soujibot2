@@ -26,38 +26,35 @@ public class Soujibot2Application {
 
     final static int TYOUSEI = -2;
 
+    final static int TABLE_NUM = 8;
 
 
 
-    @Scheduled(cron = "0 * * * * *", zone = "Asia/Tokyo")
+
+    @Scheduled(cron = "0 10 12 * * *", zone = "Asia/Tokyo")
     public void executeAlarm() {
-        //プッシュする処理を呼び出す
+        //プッシュする処理の呼び出し
         pushAlert();
-
     }
 
+
+    //Push
     @EventMapping
     public void pushAlert() {
         final LineMessagingClient client = LineMessagingClient
-                .builder(System.getenv("LINE_BOT_CHANNEL_TOKEN")/*"2+/yuT8ezRCZwr0JDyl3ounEW6xBb5ih1ZiTp1pg04Ey0bPqTTV3cGcnYcuWswzKYMZSkpqiWglXMc0ETbpYPBy5THgL/b09/pRqgn2K3nFLqNTiDbyoHOMNwH65yjWzwiuMWuFzpB2DH0ZuA2t/kQdB04t89/1O/w1cDnyilFU="*/)
+                .builder(System.getenv("LINE_BOT_CHANNEL_TOKEN"))
                 .build();
-        StringBuilder sb = new StringBuilder();
+        StringBuilder buffer = new StringBuilder();
 
-        String souji = "";
-        for (int cId = 1; cId <= 8; cId++) {
-            sb.append(Draw(cId));
+        for (int cId = 1; cId <= TABLE_NUM; cId++) {
+            buffer.append(Draw(cId));
         }
 
-        String str = new String(sb);
-        String aaa = "chec";
+        String str = new String(buffer);
         final TextMessage textMessage = new TextMessage(str);
         final PushMessage pushMessage = new PushMessage(
-                System.getenv("LINE_BOT_MY_USER_ID")/*Caaeed7cc0b737e9453fc5c3087450337*//*"C6803ac7017f9c247098d440b27131a38"*/,
+                System.getenv("LINE_BOT_GROUP_ID_2-4"),
                 textMessage);
-
-        //
-        //
-        //
 
         final BotApiResponse botApiResponse;
         try {
@@ -70,6 +67,9 @@ public class Soujibot2Application {
         System.out.println(botApiResponse);
 
     }
+
+
+    //Julian Date
 
     private static int getJD() {
 
@@ -89,6 +89,9 @@ public class Soujibot2Application {
         return jD;
     }
 
+
+    //Modified Julian Date
+
     private static int getMJD(){
         int D = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);//日
         int M = Calendar.getInstance().get(Calendar.MONTH)+1;//月
@@ -104,6 +107,9 @@ public class Soujibot2Application {
         return (int)(JD - 2400000.5);
     }
 
+
+    //Group ID
+
     private static int getGId(int cId) {
         int cW = (((getMJD()+3) / 7 )+TYOUSEI) % 4;
         int gId = cId - (cW * 2) % 8;
@@ -111,48 +117,50 @@ public class Soujibot2Application {
         return gId;
     }
 
+
+    //Item ID
+
     @EventMapping
-    String Draw(int cId) {
+    String Draw(int iID) {
 
         //日:1, 月:2, 火:3, 水:4, 木:5, 金:6, 土:7
 
-
         int doW = Calendar.getInstance().get(Calendar.DAY_OF_WEEK);
-        switch (cId) {
+        switch (iID) {
             case 1:
                 if (doW == 2) {
-                    return "教室:" + getGName(getGId(cId)) + "\r\n";
+                    return "教室:" + getGName(getGId(iID)) + "\r\n";
                 }
                 return "";
 
             case 2:
                 if (doW == 3) {
-                    return "教室:" + getGName(getGId(cId)) + "\r\n";
+                    return "教室:" + getGName(getGId(iID)) + "\r\n";
                 }
                 return "";
 
             case 5:
                 if (doW == 5) {
-                    return "教室:" + getGName(getGId(cId)) + "\r\n";
+                    return "教室:" + getGName(getGId(iID)) + "\r\n";
                 }
                 return "";
 
             case 6:
                 if (doW == 6) {
-                    return "教室:" + getGName(getGId(cId)) + "\r\n";
+                    return "教室:" + getGName(getGId(iID)) + "\r\n";
 
                 }
                 return "";
 
             case 7:
                 if (doW == 2 || doW == 6) {
-                    return "男子トイレ:" + getGName(getGId(cId)) + "\r\n";
+                    return "男子トイレ:" + getGName(getGId(iID)) + "\r\n";
                 }
                 return "";
 
             case 8:
                 if (doW == 2 || doW == 6) {
-                    return "渡り廊下:" + getGName(getGId(cId)) + "\r\n";
+                    return "渡り廊下:" + getGName(getGId(iID)) + "\r\n";
                 }
 
                 if (doW == 4) return "今日の掃除はありません";
@@ -163,6 +171,9 @@ public class Soujibot2Application {
                 return "";
         }
     }
+
+
+    //Group Name
 
     private String getGName(int gId) {
         switch (gId) {
