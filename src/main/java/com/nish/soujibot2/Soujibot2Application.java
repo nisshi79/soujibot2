@@ -52,7 +52,7 @@ public class Soujibot2Application {
         String aaa = "chec";
         final TextMessage textMessage = new TextMessage(str);
         final PushMessage pushMessage = new PushMessage(
-                "Ud93e55343ff0dfaa0bd51e382521e44d"/*Caaeed7cc0b737e9453fc5c3087450337*//*"C6803ac7017f9c247098d440b27131a38"*/,
+                System.getenv("LINE_BOT_MY_USER_ID")/*Caaeed7cc0b737e9453fc5c3087450337*//*"C6803ac7017f9c247098d440b27131a38"*/,
                 textMessage);
 
         //
